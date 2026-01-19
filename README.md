@@ -136,3 +136,5 @@ react-scientific-calculator/
 
 ## 📌 Author
 - Ahmad Ayaz – Software Developer / React Enthusiast
+- Email: ahmadayaz2022@gmail.com
+- Linkedin: https://www.linkedin.com/in/ahmadayaz99
