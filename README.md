@@ -35,10 +35,10 @@ A fully functional **Scientific Calculator** built with **React**, featuring:
 
 ## 💻 Installation
 
-1. Clone the repository:
+---Follow these steps to run the React Scientific Calculator locally:
 
-```bash
-git clone https://github.com/your-username/react-scientific-calculator.git
+---Clone the repository:
+---git clone https://github.com/ahmadayaz2022/react-scientific-calculator.git
 
 ---
 
@@ -61,7 +61,7 @@ git clone https://github.com/your-username/react-scientific-calculator.git
 
 ## 🧪 Usage / Testing
 
-- Enter numbers and operators using mouse or keyboard
+- Enter numbers and operators
 
 - Use sin(), cos(), tan(), sqrt() for scientific calculations
 
