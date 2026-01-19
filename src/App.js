@@ -5,15 +5,12 @@ import "./App.css";
 function App() {
   const [value, setValue] = useState("");
   const [history, setHistory] = useState([]);
-
   const handleClick = (text) => {
     setValue(value + text);
   };
 
   const clear = () => setValue("");
-
   const backspace = () => setValue(value.slice(0, -1));
-
 
 const calculate = () => {
   try {
@@ -30,8 +27,6 @@ const calculate = () => {
     setValue("Error");
   }
 };
-
-
 // Apply square or cube safely
 const applyPower = (power) => {
   try {
@@ -48,11 +43,6 @@ const applyPower = (power) => {
     setValue("Error");
   }
 };
-
-
-
-
-
   return (
     <div className="app">
       <div className="calculator">
@@ -76,12 +66,7 @@ const applyPower = (power) => {
           <button onClick={() => handleClick("pi")}>π</button>
           <button onClick={() => applyPower(2)}>x²</button>
           <button onClick={() => applyPower(3)}>x³</button>
-
-
-
-
-
-
+  
           <button onClick={() => handleClick("7")}>7</button>
           <button onClick={() => handleClick("8")}>8</button>
           <button onClick={() => handleClick("9")}>9</button>
