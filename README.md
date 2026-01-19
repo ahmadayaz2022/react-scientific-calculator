@@ -9,7 +9,6 @@ A fully functional **Scientific Calculator** built with **React**, featuring:
 - Calculation history
 - Mobile responsive design
 - Dark theme
-- Keyboard support for faster input
 
 ---
 
@@ -34,14 +33,6 @@ A fully functional **Scientific Calculator** built with **React**, featuring:
 
 ---
 
-## 🚀 Live Demo
-
-*(Optional: Add link if deployed, e.g., Netlify/Vercel)*
-
-[Live Demo Link](#)
-
----
-
 ## 💻 Installation
 
 1. Clone the repository:
@@ -49,42 +40,42 @@ A fully functional **Scientific Calculator** built with **React**, featuring:
 ```bash
 git clone https://github.com/your-username/react-scientific-calculator.git
 
+---
 
+## Navigate to the project folder:
 
+- cd react-scientific-calculator
 
-Navigate to the project folder:
+- Install dependencies:
+- npm install
 
-cd react-scientific-calculator
+- Start the development server:
 
-Install dependencies:
-npm install
+- npm start
 
-Start the development server:
+- Open your browser at:
 
-npm start
+-  http://localhost:3000
 
-Open your browser at:
+---
 
-http://localhost:3000
+## 🧪 Usage / Testing
 
+- Enter numbers and operators using mouse or keyboard
 
+- Use sin(), cos(), tan(), sqrt() for scientific calculations
 
-🧪 Usage / Testing
+- Press π button to insert pi
 
-Enter numbers and operators using mouse or keyboard
+- Press x² or x³ to raise the current expression to square or cube
 
-Use sin(), cos(), tan(), sqrt() for scientific calculations
+- Close functions using ) button
 
-Press π button to insert pi
+- View your calculation history on the side panel
 
-Press x² or x³ to raise the current expression to square or cube
+---
 
-Close functions using ) button
-
-View your calculation history on the side panel
-
-
-Examples
+## Examples
 | Input           | Output              |
 | --------------- | ------------------- |
 | `2 + 3`         | `5`                 |
@@ -93,44 +84,44 @@ Examples
 | `sqrt(16) + 2³` | `12`                |
 
 
+---
+
+## 🛠 Technology Stack
+
+- React.js – Frontend library
+
+- Math.js – Math evaluation library
+
+- CSS – Styling and responsive design
+
+- JavaScript – Application logic
+
+---
+
+## 📱 Mobile Responsiveness
+
+- Fully functional on smartphones and tablets
+
+- Buttons resize automatically
+
+- History panel scrollable on small screens
+
+---
+
+## 💡 Notes / Tips
+
+- Trigonometric functions use degrees (sin(90) = 1)
+
+- Close functions properly with ) button
+
+- Powers (x² and x³) automatically compute the current expression
+
+- Errors in input will display Error in the display
 
 
-🛠 Technology Stack
+---
 
-React.js – Frontend library
-
-Math.js – Math evaluation library
-
-CSS – Styling and responsive design
-
-JavaScript – Application logic
-
-
-
-📱 Mobile Responsiveness
-
-Fully functional on smartphones and tablets
-
-Buttons resize automatically
-
-History panel scrollable on small screens
-
-
-
-💡 Notes / Tips
-
-Trigonometric functions use degrees (sin(90) = 1)
-
-Close functions properly with ) button
-
-Powers (x² and x³) automatically compute the current expression
-
-Errors in input will display Error in the display
-
-
-
-
-📂 Project Structure
+## 📂 Project Structure
 react-scientific-calculator/
 ├─ public/
 │  └─ index.html
@@ -141,6 +132,7 @@ react-scientific-calculator/
 ├─ package.json
 └─ README.md
 
+---
 
-📌 Author
-Ahmad Ayaz – Software Developer / React Enthusiast
+## 📌 Author
+- Ahmad Ayaz – Software Developer / React Enthusiast
