@@ -50,6 +50,9 @@ function App() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
+    // We intentionally only depend on `value` and `showHistory` here.
+    // Other handlers (calculate, backspace, clear, handleClick) are stable enough for this effect.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value, showHistory]);
 
   const handleClick = (text) => {
