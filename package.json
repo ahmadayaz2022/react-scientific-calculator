@@ -10,7 +10,11 @@
     "mathjs": "^15.1.0",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
+<<<<<<< HEAD
     "react-scripts": "^5.0.1",
+=======
+    "react-scripts": "5.0.1",
+>>>>>>> 566f3c751d66d35c78ae718aef851af9c1fb049c
     "web-vitals": "^2.1.4"
   },
   "scripts": {
