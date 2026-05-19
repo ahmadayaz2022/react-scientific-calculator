@@ -9,10 +9,23 @@ function App() {
   const [memory, setMemory] = useState(0);
   const [showHistory, setShowHistory] = useState(false);
   const [animatingButton, setAnimatingButton] = useState(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const inputRef = useRef(null);
 
   useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
     const handleKeyDown = (e) => {
+      // Prevent keyboard input when typing in other inputs
+      if (e.target.tagName === 'INPUT' && e.target !== inputRef.current) return;
+      
       const key = e.key;
       
       if (key >= '0' && key <= '9') handleClick(key);
@@ -23,15 +36,21 @@ function App() {
       else if (key === '/') handleClick('/');
       else if (key === '(') handleClick('(');
       else if (key === ')') handleClick(')');
-      else if (key === 'Enter' || key === '=') calculate();
+      else if (key === 'Enter' || key === '=') {
+        e.preventDefault();
+        calculate();
+      }
       else if (key === 'Backspace') backspace();
-      else if (key === 'Escape') clear();
+      else if (key === 'Escape') {
+        clear();
+        setShowHistory(false);
+      }
       else if (key === '^') handleClick('^');
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [value]);
+  }, [value, showHistory]);
 
   const handleClick = (text) => {
     setValue(prev => prev + text);
@@ -177,7 +196,6 @@ function App() {
     setHistory([]);
   };
 
-  // This is a regular function, not a hook
   const handleHistoryItemClick = (result) => {
     setValue(result);
     setShowHistory(false);
@@ -257,12 +275,19 @@ function App() {
             </div>
           </div>
           <div className="header-right">
-            <button className="history-toggle" onClick={() => setShowHistory(!showHistory)}>
+            <button 
+              className="history-toggle" 
+              onClick={() => setShowHistory(!showHistory)}
+              aria-label="Toggle history"
+            >
               📜
             </button>
           </div>
         </div>
 
+<div className="developer-credit">
+  Developed by Ahmad Ayaz
+</div>
         <div className="display">
           <input 
             ref={inputRef}
@@ -270,6 +295,7 @@ function App() {
             value={value || "0"} 
             readOnly 
             className={value.includes('Error') ? 'error' : ''}
+            aria-label="Calculator display"
           />
         </div>
 
@@ -279,6 +305,7 @@ function App() {
               key={index}
               className={`btn btn-${btn.class} ${animatingButton === btn.label ? 'animate' : ''}`}
               onClick={btn.action}
+              aria-label={btn.label}
             >
               {btn.label}
             </button>
@@ -286,40 +313,56 @@ function App() {
         </div>
 
         <div className="memory-buttons">
-          <button className="btn btn-memory" onClick={memoryClear}>MC</button>
-          <button className="btn btn-memory" onClick={memoryRecall}>MR</button>
-          <button className="btn btn-memory" onClick={memoryAdd}>M+</button>
-          <button className="btn btn-memory" onClick={() => setValue(prev => prev + memory)}>M-</button>
+          <button className="btn btn-memory" onClick={memoryClear} aria-label="Memory clear">MC</button>
+          <button className="btn btn-memory" onClick={memoryRecall} aria-label="Memory recall">MR</button>
+          <button className="btn btn-memory" onClick={memoryAdd} aria-label="Memory add">M+</button>
+          <button className="btn btn-memory" onClick={() => setValue(prev => prev + memory)} aria-label="Memory subtract">M-</button>
         </div>
       </div>
 
       {showHistory && (
-        <div className="history">
-          <div className="history-header">
-            <h3>History</h3>
-            <button className="clear-history" onClick={clearHistory}>Clear</button>
-          </div>
-          {history.length === 0 ? (
-            <div className="no-history">
-              <span className="no-history-icon">📝</span>
-              <p>No history yet</p>
-            </div>
-          ) : (
-            history.map((item, index) => (
-              <div 
-                key={index} 
-                className="history-item"
-                onClick={() => handleHistoryItemClick(item.res)}
-              >
-                <p className="history-expression">{item.exp}</p>
-                <strong className="history-result">= {item.res}</strong>
+        <>
+          {isMobile && <div className="history-overlay" onClick={() => setShowHistory(false)} />}
+          <div className="history">
+            <div className="history-header">
+              <h3>History</h3>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <button className="clear-history" onClick={clearHistory}>Clear</button>
+                {isMobile && (
+                  <button 
+                    className="clear-history" 
+                    onClick={() => setShowHistory(false)}
+                    style={{ background: 'linear-gradient(135deg, #667eea, #764ba2)' }}
+                  >
+                    Close
+                  </button>
+                )}
               </div>
-            ))
-          )}
-        </div>
+            </div>
+            {history.length === 0 ? (
+              <div className="no-history">
+                <span className="no-history-icon">📝</span>
+                <p>No history yet</p>
+              </div>
+            ) : (
+              history.map((item, index) => (
+                <div 
+                  key={index} 
+                  className="history-item"
+                  onClick={() => handleHistoryItemClick(item.res)}
+                >
+                  <p className="history-expression">{item.exp}</p>
+                  <strong className="history-result">= {item.res}</strong>
+                </div>
+              ))
+            )}
+          </div>
+        </>
       )}
     </div>
+    
   );
+  
 }
 
 export default App;
